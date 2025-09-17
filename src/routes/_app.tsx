@@ -1,4 +1,5 @@
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
+import { Authenticated } from "convex/react";
 
 export const Route = createFileRoute("/_app")({
   component: RouteComponent,
@@ -16,5 +17,9 @@ export const Route = createFileRoute("/_app")({
 });
 
 function RouteComponent() {
-  return <Outlet />;
+  return (
+    <Authenticated>
+      <Outlet />
+    </Authenticated>
+  );
 }

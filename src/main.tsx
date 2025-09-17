@@ -3,13 +3,14 @@ import ReactDOM from "react-dom/client";
 import { ConvexBetterAuthProvider } from "@convex-dev/better-auth/react";
 import { authClient } from "@/lib/auth-client";
 import "./index.css";
-import { ConvexReactClient, useConvexAuth } from "convex/react";
+import { useConvexAuth } from "convex/react";
 import { createRouter, RouterProvider } from "@tanstack/react-router";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Loading } from "@/components/loading";
 
 // Import the generated route tree
 import { routeTree } from "./routeTree.gen";
+import { convexClient } from "@/lib/convex-client";
 
 // Create a new router instance
 const router = createRouter({
@@ -26,11 +27,6 @@ declare module "@tanstack/react-router" {
   }
 }
 
-const convex = new ConvexReactClient(
-  import.meta.env.VITE_CONVEX_URL as string,
-  { expectAuth: true },
-);
-
 // eslint-disable-next-line react-refresh/only-export-components
 function App() {
   const auth = useConvexAuth();
@@ -46,7 +42,7 @@ if (!rootElement.innerHTML) {
   root.render(
     <StrictMode>
       <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-        <ConvexBetterAuthProvider client={convex} authClient={authClient}>
+        <ConvexBetterAuthProvider client={convexClient} authClient={authClient}>
           <App />
         </ConvexBetterAuthProvider>
       </ThemeProvider>
