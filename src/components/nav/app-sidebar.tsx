@@ -12,10 +12,10 @@ import {
   SquareTerminal,
 } from "lucide-react";
 
-import { NavMain } from "@/components/nav-main";
-import { NavProjects } from "@/components/nav-projects";
-import { NavUser } from "@/components/nav-user";
-import { TeamSwitcher } from "@/components/team-switcher";
+import { NavMain } from "@/components/nav/nav-main";
+import { NavProjects } from "@/components/nav/nav-projects";
+import { NavUser } from "@/components/nav/nav-user";
+import { ProjectSwitcher } from "@/components/project-switcher";
 import {
   Sidebar,
   SidebarContent,
@@ -24,8 +24,7 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 import { useQuery } from "convex/react";
-import { api } from "../../convex/_generated/api";
-import { ModeToggle } from "./mode-toggle";
+import { api } from "../../../convex/_generated/api";
 
 // This is sample data.
 const data = {
@@ -159,10 +158,11 @@ const data = {
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { email, name, image } = useQuery(api.users.me, {}) ?? {};
+  const projects = useQuery(api.projects.findMany, {});
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
+        <ProjectSwitcher projects={projects} />
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />

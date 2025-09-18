@@ -1,5 +1,5 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { LoginForm, LoginValues } from "@/components/login-form";
+import { LoginForm, LoginValues } from "@/components/forms/login-form";
 import { GalleryVerticalEnd } from "lucide-react";
 import { zodValidator } from "@tanstack/zod-adapter";
 import { z } from "zod";

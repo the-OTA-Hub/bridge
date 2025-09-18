@@ -1,11 +1,13 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { LoginForm } from "@/components/login-form";
 import { GalleryVerticalEnd } from "lucide-react";
 import { zodValidator } from "@tanstack/zod-adapter";
 import { z } from "zod";
 import { toast } from "sonner";
 import { authClient } from "@/lib/auth-client";
-import { RegisterForm, type RegisterValues } from "@/components/register-form";
+import {
+  RegisterForm,
+  type RegisterValues,
+} from "@/components/forms/register-form";
 import { useTransition } from "react";
 
 const searchSchema = z.object({
